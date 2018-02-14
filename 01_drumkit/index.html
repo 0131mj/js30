@@ -36,8 +36,13 @@
         audio.currentTime = 0; //rewind to start
         audio.play();
         key.classList.add('playing');
-        console.log(key);
     });
+
+function removeTransition(e){
+    console.log(e);
+}
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('tansitionend', removeTransition))
 </script>
 </body>
 </html>

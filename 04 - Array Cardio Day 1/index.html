@@ -62,7 +62,7 @@
     }, 0);
 
     console.log(totalYears);
-    
+
     // 5. Sort the inventors by years lived
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
@@ -76,6 +76,16 @@
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+
+    var array = [1,2,3,4,5];
+    var filtered = array.filter(
+      function(item){
+        if(item<3){
+          return true;
+        }
+      }
+    )
+    console.table(filtered);
   </script>
 </body>
 </html>

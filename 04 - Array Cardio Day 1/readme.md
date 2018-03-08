@@ -1,12 +1,94 @@
 #학습내용
-- 콘솔에 배열을 테이블 형식으로 출력하는 법
-- 함수를 화살표로 나타내는 법
-- 자바스크립트 배열을 다루는 내장함수 4가지
-  .filter(),  .map(),  .reduce, .sort()
+1. 함수를 화살표로 나타내는 법
+2. 문자열 템플릿
+3. 콘솔에 배열을 테이블 형식으로 출력하는 법
+4. 자바스크립트 배열을 다루는 내장함수 4가지  
+   .filter(),  .map(),  .reduce, .sort()
+
+---
 
 
 
-## 1. 콘솔에 테이블로 출력하기
+## 1. 화살표 함수
+
+화살표함수란 주로 함수형 프로그래밍에서 자주 사용하는 표기법으로,
+
+function 이라는 키워드 대신 => 이런 모양의 화살표를 사용해 함수를 표현하는 방식이다. 
+
+화살표 함수는 단순히 모양이 다를 뿐 아니라 기능상에서도 차이점이 있다. 
+
+
+
+###### 공식문서 -  화살표 함수에 대한 소개
+
+> 화살표 함수 표현(**arrow function expression**)은 [function 표현](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/function)에 비해 구문이 짧고  자신의 [this](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/this), [arguments](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/arguments), [super](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/super) 또는 [new.target](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/new.target)을 바인딩 하지 않습니다. 화살표 함수는 항상 [익명](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/name)입니다. 이  함수 표현은 메소드 함수가 아닌 곳에 가장 적당합니다. 그래서 생성자로서 사용할 수 없습니다. 
+
+
+
+그 외에도, 
+
+- function 이라는 키워드 대신에 => 사용
+- 리턴 키워드 생략가능
+- default 값 사용 가능
+- ...args 사용가능
+- **<u>자신만의 this가 바인딩 되지 않음</u>**- 가장 중요, 아래에서 코드로 설명
+
+이런 특징들이 있다. 
+
+우선 가장 중요한 this바인딩의 차이점에 대해서 알아보기만 하고, 상세한 내용은 https://blog.seotory.com/post/2017/09/javascript-array-function 여기 잘 설명되어 있으므로 참고하자. 
+
+
+
+#### this 바인딩의 차이점
+
+###### 기존 방식 - 서브루틴에서 this가 재정의 되어 버림.
+
+```javascript
+function outerFunc(){
+      this.myVal = 1; 	// outerFunct의 myVal에 값 할당
+      function innerFunc(){
+        console.log(this.myVal); //여기에서 this는 innerFunc를 가리킴.(재정의 됨.)
+      }
+      innerFunc(); // 출력결과 : undefined
+}
+```
+
+
+
+###### 화살표함수 방식 - 서브루틴에서 this가 재정의 되지 않음.
+
+```javascript
+function outerFunc(){
+      this.myVal = 1; // outerFunct의  myVal에 값 할당
+      var innerFunc = () => {console.log(this.myVal)}  // this는 outerFunc를 가리킴(재정의x)
+      innerFunc(); // 출력결과 : 1
+}
+```
+
+
+
+
+
+## 2. 문자열 템플릿
+
+``` javascript
+const fullNames = inventors.map(inventor => `${inventor['first']}-${inventor['last']}`)
+```
+
+- 문자열을 표현할때 백틱(`) 기호를 사용하여 전체를 감싸서 표현한다.
+
+- 백틱 안의 내용은 그대로 표기되므로 홑따옴표, 겹따옴표, 줄바꿈 등을 신경쓰지 않고 그대로 작성하면 된다.
+
+- 말하자면 백틱은 세번째 따옴표 역할을 한다고 생각하면 된다. 
+
+- 변수는 ${ }안에 넣어서 표현한다.
+
+  ​
+
+
+
+
+## 3. 콘솔에 테이블로 출력하기
 
 ##### 기존 방식 
 
@@ -44,65 +126,7 @@ console.table(array);
 
 
 
-## 2. 화살표 함수
-
-화살표함수란 주로 함수형 프로그래밍에서 자주 사용하는 표기법으로,
-
-function 이라는 키워드 대신 => 이런 모양의 화살표를 사용해 함수를 표현하는 방식이다. 
-
-화살표 함수는 단순히 모양이 다를 뿐 아니라 기능상에서도 차이점이 있다. 
-
-
-
-###### 공식문서 -  화살표 함수에 대한 소개
-
-> 화살표 함수 표현(**arrow function expression**)은 [function 표현](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/function)에 비해 구문이 짧고  자신의 [this](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/this), [arguments](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/arguments), [super](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/super) 또는 [new.target](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/new.target)을 바인딩 하지 않습니다. 화살표 함수는 항상 [익명](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/name)입니다. 이  함수 표현은 메소드 함수가 아닌 곳에 가장 적당합니다. 그래서 생성자로서 사용할 수 없습니다. 
-
-
-
-그 외에도, 
-
-- function 이라는 키워드 대신에 => 사용
-- 리턴 키워드 생략가능
-- default 값 사용 가능
-- ...args 사용가능
-- **<u>자신만의 this가 바인딩 되지 않음</u>**- 가장 중요, 아래에서 코드로 설명
-
-이런 특징들이 있다. 
-
-우선 가장 중요한 this바인딩의 차이점에 대해서 알아보기만 하고, 상세한 내용은 https://blog.seotory.com/post/2017/09/javascript-array-function 여기 잘 설명되어 있으므로 참고하자. 
-
-
-
-### this 바인딩의 차이점
-
-###### 기존 방식 - 서브루틴에서 this가 재정의 되어 버림.
-
-```javascript
-function outerFunc(){
-      this.myVal = 1; 	// outerFunct의 myVal에 값 할당
-      function innerFunc(){
-        console.log(this.myVal); //여기에서 this는 innerFunc를 가리킴.(재정의 됨.)
-      }
-      innerFunc(); // 출력결과 : undefined
-}
-```
-
-
-
-###### 화살표함수 방식 - 서브루틴에서 this가 재정의 되지 않음.
-
-```javascript
-function outerFunc(){
-      this.myVal = 1; // outerFunct의  myVal에 값 할당
-      var innerFunc = () => {console.log(this.myVal)}  // this는 outerFunc를 가리킴(재정의x)
-      innerFunc(); // 출력결과 : 1
-}
-```
-
-
-
-## 3. 배열관련 함수 
+## 4. 배열관련 함수 
 
 - filter()
 - map()

@@ -28,7 +28,7 @@ console.log(array);
 .table을 사용하면 아래와 같이 정돈된 테이블 형태로 출력이 가능하다. 
 
 ```javascript
-var array = [1.2.3];
+var array = [1,2,3];
 console.table(array);
 ```
 

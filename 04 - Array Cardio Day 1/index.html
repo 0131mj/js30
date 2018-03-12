@@ -90,34 +90,15 @@
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
-    var result = data.reduce(
-      function(cur, next){
-        return cur+' '+next;
+    const transportation = data.reduce(function(obj, item){
+      if(!obj[item]){
+        obj[item] = 0;
       }
-    )
+      obj[item]++;
+      return obj;
+    },{});
 
-    var resultRight = data.reduceRight(
-      function(cur, next){
-        return cur+' '+next;
-      }
-    )
-
-    console.log(result);
-    console.log(resultRight);
-
-
-    // var array = [1,2,3,4,5];
-
-    var array = ['banana', 'apple', 'grape', 'orange'];
-    
-    var sorted = array.sort(
-      function(a,b){
-        console.log(a,b);
-        return b-a;
-      }
-    )
-
-    // console.table(sorted);
+    console.table(transportation);
     
   </script>
 </body>

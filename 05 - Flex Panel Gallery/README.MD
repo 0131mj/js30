@@ -116,3 +116,9 @@ colunm-reverse : 아래에서 위로
 
 상하 정렬을 하면 flex-basis는 높이가 된다는 것.
 
+
+
+더 많은 자료는 아래 링크를 참조할 것.
+
+[]: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+

@@ -21,6 +21,10 @@ fetch(url);
 
 
 
+## Promise
+
+
+
 
 
 ## then

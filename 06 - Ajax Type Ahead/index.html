@@ -18,43 +18,55 @@
     /* 1. 원격으로 데이터 가져오기, 2. 갖고 온 데이터를 하나의 배열에 담기 */
     const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';  
 
-    // const places = [];
+    const places = [];
 
-    // fetch(endpoint)
-    //     .then(blob => blob.json())
-    //     .then(data => places.push(...data));
+    fetch(endpoint)
+        .then(blob => blob.json())
+        .then(data => places.push(...data));
 
-    // /* 3. 조건에 맞는 도시만 찾아서 필터링하기 */
-    // function findMatches(wordToMatch, places){
-    //     return places.filter(place =>{
-    //         const regex = new RegExp(wordToMatch, 'gi');
-    //         return place.city.match(regex) || place.state.match(regex)
-    //     });
-    // }
+     /* 3. 조건에 맞는 도시만 찾아서 필터링하기 */
+     function findMatches(wordToMatch, places){
+         return places.filter(place =>{
+             const regex = new RegExp(wordToMatch, 'gi');
+             return place.city.match(regex) || place.state.match(regex)
+         });
+     }
 
-    // /* 4. 보여주기 */
-    // const searchInput = document.querySelector('.search');
-    // const suggestions = document.querySelector('.suggestions');
+     /* 4. 보여주기 */
+     const searchInput = document.querySelector('.search');
+     const suggestions = document.querySelector('.suggestions');
 
-    // function displayMatches(){
+     function displayMatches(){
         
-    //     const matchArray = findMatches(this.value, places);
-    //     const html = matchArray.map(place =>{
-    //         // /* 5. 하이라이트로 문자열 치환하기 */
-    //         // const regex = new RegExp(this.value, 'gi');
-    //         // const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
-    //         return `
-    //             <li>
-    //                 <span class="name">${place.city}, ${place.state}</span>
-    //                 <span class="name">${place.population}</span>
-    //             </li>
-    //         `;
-    //     }).join('');
-    //     suggestions.innerHTML = html;
-    // }   
+         const matchArray = findMatches(this.value, places);
+         
+         const html = matchArray.map(place =>{
+              /* 5. 하이라이트로 문자열 치환하기 */
+//              const regex = new RegExp(this.value, 'gi');
+             
+//             ['city', 'state']
+//             
+//              const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
+//              const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+             const cityName = replaceStr(place.city, this.value);
+             const stateName = replaceStr(place.state, this.value);
+             
+             return `
+                 <li>
+                     <span class="name">${cityName}, ${stateName}</span>
+                     <span class="name">${place.population}</span>
+                 </li>
+             `;
+         }).join('');
+         suggestions.innerHTML = html;
+     }  
+    function replaceStr(someStr, thisvalue) {
+            const regex = new RegExp(thisvalue, 'gi');
+            return someStr.replace(regex, `<span class="hl">${thisvalue}</span>`);
+    }
 
-    // // searchInput.addEventListener('change', displayMatches)
-    // searchInput.addEventListener('keyup', displayMatches)    
+     //searchInput.addEventListener('change', displayMatches)
+     searchInput.addEventListener('keyup', displayMatches)    
 </script>
 </body>
 </html>

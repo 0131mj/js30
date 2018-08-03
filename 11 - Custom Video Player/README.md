@@ -53,6 +53,12 @@ https://www.w3schools.com/tags/ref_av_dom.asp (기능참고)
 
 ----
 
+- 삼항연산자와 대괄호접근을 사용한 메서드 실행
+- 실행되고 있는 이벤트에 리스너 달기
+- addEventListener에서 호출한 함수의 this 바인딩
+- dataset 사용하기
+- <input type = "range" /> 속성 알아보기, 이벤트 리스너 달기
+
 
 
 

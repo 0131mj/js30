@@ -2,18 +2,22 @@
 
 
 
-### Video tag
+## I. HTML 5 video 의 기능 알아보기
+
+
+
+### 1. Video tag
 
 ```html
 <video src="url"></video>
 ```
 
-- 영상을 재생시켜 주는 태그 
+- 영상을 재생시키기 위해 사용하는 태그 
 - 자바스크립트를 사용해 메서드를 실행하거나, 프로퍼티를 변경하여 관련 기능을 제어할 수 있다.  
 
 
 
-### Video Method
+### 2. Video Method
 
 ```javascript
 video.play();  // 재생
@@ -24,7 +28,7 @@ video.pause(); //일시정지
 
 
 
-### Video Properties
+### 3. Video Properties
 
 ```javascript
 video.src 	= "./video";// 소스주소
@@ -42,6 +46,16 @@ video.currentTime = 10; // 재생할 시간지점
 https://www.videezy.com/ (무료 동영상 소스)
 
 https://www.w3schools.com/tags/ref_av_dom.asp (기능참고)
+
+
+
+
+
+----
+
+
+
+
 
 
 

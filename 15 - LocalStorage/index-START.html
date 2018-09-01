@@ -26,23 +26,38 @@
   </div>
 
 <script>
-  	const addItems = document.querySelector('.add-items'); 
-  	const itemsList = document.querySelector('.plates');
+  	const addItems = document.querySelector('.add-items'); // 폼
+  	const itemsList = document.querySelector('.plates'); // 리스트가 배치될 공간
+//	const items = []; //추가한 항목들
   	const items = JSON.parse(localStorage.getItem('items')) || []; 
 	
+	/* 2. event 정의 */
 	function addItem(e){
-		e.preventDefault();
+		
+		//1.폼 전송 방지
+		e.preventDefault(); 
+		
+		//2.this는 form 태그와 바인딩 된다. 
 		const text = (this.querySelector('[name=item]')).value;
+		
+		//3.필요한 2가지 요소 정의 (텍스트와 체크여부)
 		const item = {
 			text,
 			done : false
 		}
+		
+		//4.아이템에 요소 추가 
 		items.push(item);
 		
+		populateList(items, itemsList);
+		//6. 로컬스토리지에 저장(populateList 정의 후)
 		localStorage.setItem('items', JSON.stringify(items));
+		
+		//5. 폼 리셋시키기
 		this.reset();
 	}
 	
+	/* 3. 엘리먼트에 추가된 데이터 표기 */
 	function populateList(plates = [], platesList){
 		platesList.innerHTML = plates.map((plate, i) =>{
 			return `
@@ -54,10 +69,25 @@
 		}).join('');	
 	}
 	
+	/* 4.토글로 이벤트 구현 */
+	function toggleDone(e) {
+		if (!e.target.matches('input')) return; // 인풋태그는 이벤트에서 제외
+		const el = e.target;
+		const index = el.dataset.index;
+		items[index].done = !items[index].done;
+		localStorage.setItem('items', JSON.stringify(items));
+		populateList(items, itemsList);
+	  }
 	
 	
+	/* 1. submit event */
 	addItems.addEventListener('submit', addItem);
+	
+	itemsList.addEventListener('click', toggleDone);
 	populateList(items, itemsList);
+	
+	
+	
 	
 
 </script>

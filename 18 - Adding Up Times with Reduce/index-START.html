@@ -213,33 +213,30 @@
   </div>
  
 <script>
-	/* 시간표시, 스타일 */
-	const lists = Array.from(document.querySelectorAll('[data-time]'));
-	lists.map(		
-		list =>list.innerHTML+=`<p class="play-time">${list.dataset.time}</p>`
-	)
-	
-	const time = lists
-		.map(list=>list.dataset.time)
-		.map(runTime =>{
-			const [min, sec] = runTime.split(':').map(parseFloat);
-			return min * 60 + sec;
+	const lists = [...document.querySelectorAll('[data-time]')];
+	const times = lists
+		.map(list => list.dataset.time)
+		.map(time => {
+			const[min, sec] = time.split(':').map(str=>parseInt(str));
+			return min*60+sec; 
 		})
-		.reduce((total,vidSeconds)=> total + vidSeconds);
+		.reduce((total, currentSec)=> total+currentSec);
 	
-//	console.log(time);
+	let leftSeconds = times;
 	
-	let leftSeconds = time;
-		
 	const hour = Math.floor(leftSeconds/3600);
-	leftSeconds = time % 3600;
-		
-	const min = Math.floor(leftSeconds/60);
-	leftSeconds = time % 60;
-		
-	const totalTime = document.getElementById('total-time');
-	totalTime.innerHTML = `${hour}시간 ${min}분 ${leftSeconds}초`;
+	leftSeconds = times % 3600
 	
+	const min = Math.floor(leftSeconds/60);
+	leftSeconds = times % 60
+	
+	console.log(hour);
+	console.log(min);
+	console.log(leftSeconds);
+	
+	const totalTime = document.getElementById('total-time');
+	totalTime.innerHTML = `${hour}시간 ${min}분 ${leftSeconds}초`
+			
 	
 </script>
 </body>
